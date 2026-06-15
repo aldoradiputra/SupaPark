@@ -1,0 +1,61 @@
+/* SupaPark — Color Tokens
+   Dark-only system. Built for outdoor readability, dark surfaces,
+   and instant status recognition. Two contexts:
+   (1) Dashboard / app — soft dark foundation (#0A0A0A base)
+   (2) Booth kiosk — ULTRA contrast, pure black (#000000)            */
+
+:root {
+  /* ---- Dark foundation (dashboard surfaces) ---- */
+  --surface-base: #0A0A0A;      /* deepest background        */
+  --surface-raised: #111111;    /* cards, panels             */
+  --surface-overlay: #1A1A1A;   /* modals, dropdowns, insets */
+  --surface-elevated: #222222;  /* hover states              */
+  --border: #2A2A2A;            /* hairline borders          */
+  --border-faint: rgba(255,255,255,.06);
+
+  /* ---- Text ---- */
+  --text-primary: #F5F5F0;      /* primary copy, titles      */
+  --text-secondary: #A3A39A;    /* secondary, descriptions   */
+  --text-tertiary: #666660;     /* labels, hints, timestamps */
+
+  /* ---- Primary — Amber ("Operational Authority") ---- */
+  --amber: #F5A623;             /* primary CTA, gate controls */
+  --amber-bright: #FFB830;      /* hover                      */
+  --amber-dim: #B57A18;         /* pressed                    */
+  --amber-subtle: #2A1F08;      /* tinted fill                */
+  --amber-50:  #FEF7E8;
+  --amber-100: #FDECC6;
+  --amber-200: #FBD98D;
+  --amber-300: #F8C154;
+  --amber-400: #F5A623;
+  --amber-500: #E08E0B;
+  --amber-600: #B87008;
+  --amber-700: #8A5406;
+  --amber-800: #5C3804;
+  --amber-900: #2E1C02;
+
+  /* ---- Status ---- */
+  --success: #22C55E;           /* confirmed payment, valid   */
+  --error:   #EF4444;           /* gate stuck, errors         */
+  --info:    #3B82F6;           /* info, links, neutral badge */
+
+  /* ---- Booth kiosk — ultra contrast (7" display, glare) ---- */
+  --booth-bg: #000000;          /* pure black, never gray     */
+  --booth-text: #FFFFFF;        /* pure white primary         */
+  --booth-text-secondary: #999999;
+  --booth-amber: #F5A623;       /* actions / highlights       */
+  --booth-success: #00FF88;     /* neon confirm               */
+  --booth-error: #FF3333;       /* bright error               */
+
+  /* ---- Semantic aliases ---- */
+  --bg: var(--surface-base);
+  --surface-card: var(--surface-raised);
+  --text-body: var(--text-primary);
+  --text-muted: var(--text-secondary);
+  --text-faint: var(--text-tertiary);
+  --accent: var(--amber);
+  --accent-hover: var(--amber-bright);
+  --accent-pressed: var(--amber-dim);
+  --accent-tint: var(--amber-subtle);
+  --focus-ring: var(--amber);
+}

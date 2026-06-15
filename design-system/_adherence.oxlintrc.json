@@ -1,0 +1,319 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/core/**",
+              "ui_kits/booth/**",
+              "ui_kits/dashboard/**",
+              "ui_kits/onboarding/**",
+              "ui_kits/pwa/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Plus Jakarta Sans|JetBrains Mono))/i]",
+        "message": "Font not provided by the design system. Available: Plus Jakarta Sans, JetBrains Mono."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|key|ref|className|style|children)$/]",
+        "message": "<Badge> doesn't accept that prop. Declared props: variant."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='BoothButton'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|key|ref|className|style|children)$/]",
+        "message": "<BoothButton> doesn't accept that prop. Declared props: variant."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='BoothButton'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:primary|outline|danger)$/]",
+        "message": "<BoothButton> variant must be one of 'primary' | 'outline' | 'danger'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|size|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: variant, size."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Card'] > JSXAttribute > JSXIdentifier[name!=/^(?:glow|key|ref|className|style|children)$/]",
+        "message": "<Card> doesn't accept that prop. Declared props: glow."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Logo'] > JSXAttribute > JSXIdentifier[name!=/^(?:size|color|wordmark|wordmarkColor|key|ref|className|style|children)$/]",
+        "message": "<Logo> doesn't accept that prop. Declared props: size, color, wordmark, wordmarkColor."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='MetricCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|value|delta|deltaColor|icon|style|key|ref|className|style|children)$/]",
+        "message": "<MetricCard> doesn't accept that prop. Declared props: label, value, delta, deltaColor, icon, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='MetricCard'] > JSXAttribute[name.name='deltaColor'] > Literal[value!=/^(?:up|down|muted)$/]",
+        "message": "<MetricCard> deltaColor must be one of 'up' | 'down' | 'muted'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='PlateDisplay'] > JSXAttribute > JSXIdentifier[name!=/^(?:plate|size|key|ref|className|style|children)$/]",
+        "message": "<PlateDisplay> doesn't accept that prop. Declared props: plate, size."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='PlateDisplay'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md|lg)$/]",
+        "message": "<PlateDisplay> size must be one of 'sm' | 'md' | 'lg'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='StatusBadge'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|label|key|ref|className|style|children)$/]",
+        "message": "<StatusBadge> doesn't accept that prop. Declared props: value, label."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Badge": {
+        "replaces": []
+      },
+      "BoothButton": {
+        "replaces": []
+      },
+      "Button": {
+        "replaces": []
+      },
+      "Card": {
+        "replaces": []
+      },
+      "Input": {
+        "replaces": []
+      },
+      "Logo": {
+        "replaces": []
+      },
+      "MetricCard": {
+        "replaces": []
+      },
+      "PlateDisplay": {
+        "replaces": []
+      },
+      "StatusBadge": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent",
+      "--accent-hover",
+      "--accent-pressed",
+      "--accent-tint",
+      "--amber",
+      "--amber-100",
+      "--amber-200",
+      "--amber-300",
+      "--amber-400",
+      "--amber-50",
+      "--amber-500",
+      "--amber-600",
+      "--amber-700",
+      "--amber-800",
+      "--amber-900",
+      "--amber-bright",
+      "--amber-dim",
+      "--amber-subtle",
+      "--bg",
+      "--booth-amber",
+      "--booth-bg",
+      "--booth-body",
+      "--booth-error",
+      "--booth-fee",
+      "--booth-floor",
+      "--booth-plate",
+      "--booth-success",
+      "--booth-text",
+      "--booth-text-secondary",
+      "--booth-title",
+      "--border",
+      "--border-faint",
+      "--border-hairline",
+      "--border-width",
+      "--error",
+      "--focus-ring",
+      "--font-mono",
+      "--font-ui",
+      "--fw-bold",
+      "--fw-extrabold",
+      "--fw-medium",
+      "--fw-regular",
+      "--fw-semibold",
+      "--glow-amber",
+      "--glow-success",
+      "--info",
+      "--leading-normal",
+      "--leading-snug",
+      "--leading-tight",
+      "--radius",
+      "--radius-lg",
+      "--radius-md",
+      "--radius-pill",
+      "--radius-sm",
+      "--shadow-card",
+      "--space-1",
+      "--space-10",
+      "--space-12",
+      "--space-16",
+      "--space-2",
+      "--space-3",
+      "--space-4",
+      "--space-5",
+      "--space-6",
+      "--space-8",
+      "--success",
+      "--surface-base",
+      "--surface-card",
+      "--surface-elevated",
+      "--surface-overlay",
+      "--surface-raised",
+      "--tap-booth",
+      "--tap-min",
+      "--tap-tablet",
+      "--text-body",
+      "--text-body-size",
+      "--text-card-title",
+      "--text-faint",
+      "--text-label",
+      "--text-metric",
+      "--text-muted",
+      "--text-page-title",
+      "--text-primary",
+      "--text-secondary",
+      "--text-section",
+      "--text-table",
+      "--text-tertiary",
+      "--tracking-label",
+      "--tracking-plate",
+      "--tracking-wordmark"
+    ],
+    "tokenKinds": {
+      "--surface-base": "color",
+      "--surface-raised": "color",
+      "--surface-overlay": "color",
+      "--surface-elevated": "color",
+      "--border": "color",
+      "--border-faint": "color",
+      "--text-primary": "font",
+      "--text-secondary": "font",
+      "--text-tertiary": "font",
+      "--amber": "color",
+      "--amber-bright": "color",
+      "--amber-dim": "color",
+      "--amber-subtle": "color",
+      "--amber-50": "color",
+      "--amber-100": "color",
+      "--amber-200": "color",
+      "--amber-300": "color",
+      "--amber-400": "color",
+      "--amber-500": "color",
+      "--amber-600": "color",
+      "--amber-700": "color",
+      "--amber-800": "color",
+      "--amber-900": "color",
+      "--success": "color",
+      "--error": "color",
+      "--info": "color",
+      "--booth-bg": "color",
+      "--booth-text": "font",
+      "--booth-text-secondary": "font",
+      "--booth-amber": "color",
+      "--booth-success": "color",
+      "--booth-error": "color",
+      "--bg": "color",
+      "--surface-card": "color",
+      "--text-body": "font",
+      "--text-muted": "font",
+      "--text-faint": "font",
+      "--accent": "color",
+      "--accent-hover": "color",
+      "--accent-pressed": "color",
+      "--accent-tint": "color",
+      "--focus-ring": "color",
+      "--font-ui": "font",
+      "--font-mono": "font",
+      "--fw-regular": "font",
+      "--fw-medium": "font",
+      "--fw-semibold": "font",
+      "--fw-bold": "font",
+      "--fw-extrabold": "font",
+      "--text-page-title": "font",
+      "--text-card-title": "font",
+      "--text-body-size": "font",
+      "--text-table": "font",
+      "--text-label": "font",
+      "--text-section": "font",
+      "--text-metric": "font",
+      "--booth-plate": "spacing",
+      "--booth-fee": "spacing",
+      "--booth-title": "spacing",
+      "--booth-body": "spacing",
+      "--booth-floor": "spacing",
+      "--tracking-plate": "font",
+      "--tracking-wordmark": "font",
+      "--tracking-label": "font",
+      "--leading-tight": "font",
+      "--leading-snug": "font",
+      "--leading-normal": "font",
+      "--space-1": "spacing",
+      "--space-2": "spacing",
+      "--space-3": "spacing",
+      "--space-4": "spacing",
+      "--space-5": "spacing",
+      "--space-6": "spacing",
+      "--space-8": "spacing",
+      "--space-10": "spacing",
+      "--space-12": "spacing",
+      "--space-16": "spacing",
+      "--radius-sm": "radius",
+      "--radius": "radius",
+      "--radius-md": "radius",
+      "--radius-lg": "radius",
+      "--radius-pill": "radius",
+      "--tap-min": "spacing",
+      "--tap-tablet": "spacing",
+      "--tap-booth": "spacing",
+      "--border-width": "spacing",
+      "--border-hairline": "spacing",
+      "--shadow-card": "shadow",
+      "--glow-amber": "shadow",
+      "--glow-success": "shadow"
+    },
+    "fontFamilies": [
+      "JetBrains Mono",
+      "Plus Jakarta Sans"
+    ]
+  }
+}

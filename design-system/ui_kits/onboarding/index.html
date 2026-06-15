@@ -1,0 +1,53 @@
+<!-- @dsCard group="Onboarding" viewport="1100x820" name="Onboarding funnel" subtitle="2-step public registration + map + success · mobile/desktop · all field states" -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SupaPark — Pendaftaran</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  html, body { margin: 0; background: var(--surface-base); }
+  * { -webkit-font-smoothing: antialiased; box-sizing: border-box; }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 6px; border: 2px solid var(--surface-base); }
+  ::-webkit-scrollbar-track { background: transparent; }
+
+  /* Leaflet dark adjustments */
+  .leaflet-container { background: #0c0d0e !important; font-family: var(--font-ui); }
+  .leaflet-tooltip { background: #1A1A1A; color: #F5F5F0; border: 1px solid #2A2A2A; border-radius: 6px; font-size: 11px; box-shadow: 0 4px 12px rgba(0,0,0,.5); padding: 4px 8px; }
+  .leaflet-tooltip-top::before { border-top-color: #2A2A2A; }
+  .leaflet-bar a { background: #1A1A1A; color: #F5F5F0; border-bottom-color: #2A2A2A; }
+  .leaflet-bar a:hover { background: #222; }
+  .ob-pin { background: transparent; border: none; }
+
+  /* animations */
+  @keyframes obUp { from { transform: translateY(12px); } to { transform: none; } }
+  @keyframes obPop { 0% { transform: scale(.7); } 60% { transform: scale(1.06); } 100% { transform: scale(1); } }
+  @media (prefers-reduced-motion: reduce) {
+    [style*="obUp"], [style*="obPop"] { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="root" data-screen-label="Onboarding"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.456.0/dist/umd/lucide.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<script type="text/babel" src="fields.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+<script type="text/babel">
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  function mount(){
+    if (window.OB_App && window.OB) { root.render(<window.OB_App/>); }
+    else setTimeout(mount, 40);
+  }
+  mount();
+</script>
+</body>
+</html>

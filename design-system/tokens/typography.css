@@ -1,0 +1,43 @@
+/* SupaPark — Typography Tokens
+   Two fonts. One for UI, one for plates & data. Zero ambiguity at any
+   distance. Plus Jakarta Sans = modern, Indonesian roots. JetBrains
+   Mono = machined, monospace — plate numbers & money only.            */
+
+:root {
+  /* ---- Families ---- */
+  --font-ui: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Courier New', monospace;
+
+  /* ---- Weights ---- */
+  --fw-regular: 400;    /* @kind font */
+  --fw-medium: 500;     /* @kind font */
+  --fw-semibold: 600;   /* @kind font */
+  --fw-bold: 700;       /* @kind font */
+  --fw-extrabold: 800;  /* @kind font */
+
+  /* ---- Dashboard type scale ---- */
+  --text-page-title: 24px;      /* 600 — "Revenue Overview"        */
+  --text-card-title: 16px;      /* 600 — "Today's Revenue"         */
+  --text-body-size: 14px;       /* 400 — body copy                 */
+  --text-table: 13px;           /* 400 — table cells               */
+  --text-label: 12px;           /* 500 — labels                    */
+  --text-section: 11px;         /* 600 uppercase — section headers */
+  --text-metric: 28px;          /* 700 — metric values             */
+
+  /* ---- Booth touchscreen scale (read through a car window) ---- */
+  --booth-plate: 48px;          /* 700 mono — plate number         */
+  --booth-fee: 64px;            /* 700 — fee amount                */
+  --booth-title: 28px;          /* 600 — status titles             */
+  --booth-body: 18px;           /* 400 — supporting copy           */
+  --booth-floor: 20px;          /* absolute minimum font size      */
+
+  /* ---- Tracking ---- */
+  --tracking-plate: 0.1em;      /* plate / mono spacing            */
+  --tracking-wordmark: 0.15em;  /* SUPAPARK wordmark               */
+  --tracking-label: 0.08em;     /* uppercase labels                */
+
+  /* ---- Line heights ---- */
+  --leading-tight: 1.2;
+  --leading-snug: 1.4;
+  --leading-normal: 1.6;
+}
