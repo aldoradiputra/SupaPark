@@ -1,25 +1,48 @@
-# SupaPark — Supabase Schema
+# SupaPark
 
 Smart parking system for Indonesia.
 
-- **One Next.js app** on Vercel — landing + onboarding + dashboard
-- **Supabase** backend — Postgres + Auth + Realtime + Edge Functions
+- **One Next.js app** on Vercel — landing + onboarding + dashboard (this repo root)
+- **Supabase** backend — Postgres + Auth + Realtime + Edge Functions (`supabase/`)
 - **One lean Go binary per Raspberry Pi lane** — ALPR + gate relay + offline queue
-
-This repo holds the database design: migrations, Row Level Security (RLS) policies, and seed data.
+- **Design system** — brand tokens, components, UI kits (`design-system/`)
 
 ## Layout
 
 ```
-supabase/
-├── config.toml                                  # minimal local CLI config
-├── migrations/
-│   ├── 20260614120000_initial_schema.sql        # extensions, types, tables, indexes, triggers
-│   └── 20260614121000_rls_policies.sql          # RLS enable + grants + policies
-└── seed.sql                                     # demo org, location, 2 lanes, tariff, CRM sample
+.                          # Next.js 14 app (App Router, src/)
+├── src/
+│   ├── app/               # (public) + (dashboard) route groups, login, root layout
+│   ├── components/        # ui primitives, sidebar, logo, auth form
+│   ├── lib/
+│   │   ├── supabase/      # browser + server clients, session middleware
+│   │   └── queries/       # typed query functions (replace the old axios api)
+│   ├── store/             # zustand (locale + selected location; no auth token)
+│   ├── types/             # database.types.ts + domain aliases
+│   └── middleware.ts      # route protection + session refresh
+├── supabase/
+│   ├── config.toml
+│   ├── migrations/
+│   │   ├── 20260614120000_initial_schema.sql    # types, tables, indexes, triggers, RPC
+│   │   └── 20260614121000_rls_policies.sql      # RLS enable + grants + policies
+│   └── seed.sql                                 # demo org, location, 2 lanes, tariff, CRM
+└── design-system/                               # brand tokens, components, UI kits
 ```
 
-## Run it locally
+## Run the web app
+
+```bash
+npm install
+cp .env.local.example .env.local   # fill in your Supabase URL + anon key
+npm run dev                        # http://localhost:3000
+```
+
+Public routes: `/`, `/onboarding`, `/login`. Everything else (the dashboard:
+`/overview`, `/sessions`, `/revenue`, `/members`, `/plate-rules`, `/leads`,
+`/projects`, `/devices`, `/settings`) requires a Supabase session — the
+middleware redirects to `/login` otherwise.
+
+## Run the database locally
 
 ```bash
 supabase start          # boots Postgres + Auth + Studio (Docker)
