@@ -1,17 +1,25 @@
 import Link from "next/link";
+import { CheckCircle2 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import { buttonClassName } from "@/components/ui/button";
 
-export default function OnboardingSuccess() {
+export default function OnboardingSuccessPage() {
   return (
-    <div className="mx-auto max-w-xl px-6 py-24 text-center">
-      <h1 className="text-2xl font-semibold text-foreground">Terima kasih</h1>
-      <p className="mx-auto mt-2 max-w-md text-sm text-muted">
-        Pendaftaran Anda telah kami terima. Tim SupaPark akan menghubungi Anda.
-        (Halaman konfirmasi — scaffold.)
+    <div className="mx-auto flex max-w-md flex-col items-center px-6 py-24 text-center">
+      <span className="flex h-16 w-16 items-center justify-center rounded-full bg-success/15 text-success">
+        <CheckCircle2 size={36} />
+      </span>
+      <h1 className="mt-6 text-2xl font-semibold text-foreground">
+        Pendaftaran Berhasil!
+      </h1>
+      <p className="mt-2 text-muted">
+        Tim kami akan menghubungi Anda dalam 1×24 jam.
       </p>
-      <Link href="/" className="mt-6 inline-block">
-        <Button variant="secondary">Kembali ke beranda</Button>
+      <Link
+        href="/"
+        className={buttonClassName({ variant: "secondary", className: "mt-8" })}
+      >
+        Kembali ke Beranda
       </Link>
     </div>
   );

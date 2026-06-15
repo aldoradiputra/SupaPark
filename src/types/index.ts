@@ -27,6 +27,7 @@ export type PlateRuleType = Enums["plate_rule_type"];
 export type UserRole = Enums["user_role"];
 export type LeadSource = Enums["lead_source"];
 export type LeadStatus = Enums["lead_status"];
+export type CurrentSystemType = Enums["current_system_type"];
 export type ProjectStatus = Enums["project_status"];
 
 // Shape of locations.tariff_config (stored as JSONB).

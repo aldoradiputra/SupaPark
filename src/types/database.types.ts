@@ -391,6 +391,24 @@ export interface Database {
         };
         Returns: string;
       };
+      submit_onboarding_lead: {
+        Args: {
+          p_id: string;
+          p_city?: string | null;
+          p_address?: string | null;
+          p_latitude?: number | null;
+          p_longitude?: number | null;
+          p_entry_lanes?: number | null;
+          p_exit_lanes?: number | null;
+          p_current_system?:
+            | Database["public"]["Enums"]["current_system_type"]
+            | null;
+          p_daily_volume?: number | null;
+          p_preferred_date?: string | null;
+          p_notes?: string | null;
+        };
+        Returns: string;
+      };
     };
     Enums: {
       lane_type: "entry" | "exit";
