@@ -26,3 +26,8 @@ Thumbs.db
 *.swp
 .idea/
 .vscode/
+
+# Go edge binary
+/edge/edge
+/edge/cmd/edge/edge
+*.db
