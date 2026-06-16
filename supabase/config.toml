@@ -35,3 +35,20 @@ enable_signup = true
 double_confirm_changes = true
 # Disabled so the seeded demo admin can sign in immediately on local.
 enable_confirmations = false
+
+# Edge functions are machine-to-machine (lane X-API-Key / webhook signature),
+# so the Supabase JWT gate is disabled — each function authorizes itself.
+[functions.session-entry]
+verify_jwt = false
+
+[functions.session-exit]
+verify_jwt = false
+
+[functions.session-sync]
+verify_jwt = false
+
+[functions.qris-webhook]
+verify_jwt = false
+
+[functions.lane-heartbeat]
+verify_jwt = false
