@@ -28,3 +28,15 @@ export async function getProjectById(
   if (error) throw error;
   return data;
 }
+
+export async function updateProjectStatus(
+  supabase: TypedSupabaseClient,
+  id: string,
+  status: ProjectStatus,
+) {
+  const { error } = await supabase
+    .from("projects")
+    .update({ status })
+    .eq("id", id);
+  if (error) throw error;
+}

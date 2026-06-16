@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 
 import { Logo } from "@/components/logo";
+import { LocationSwitcher } from "@/components/layout/location-switcher";
 import { useTranslations, type TranslationKey } from "@/lib/i18n";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
@@ -56,6 +57,10 @@ export function Sidebar() {
         <span className="text-[17px] font-bold tracking-[0.01em] text-foreground">
           SupaPark
         </span>
+      </div>
+
+      <div className="px-3 pb-3">
+        <LocationSwitcher />
       </div>
 
       <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto p-3">

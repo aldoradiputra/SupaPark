@@ -409,6 +409,18 @@ export interface Database {
         };
         Returns: string;
       };
+      revenue_daily: {
+        Args: { p_location_id: string; p_days?: number };
+        Returns: { day: string; revenue: number; sessions: number }[];
+      };
+      revenue_by_method: {
+        Args: { p_location_id: string; p_days?: number };
+        Returns: { method: string; revenue: number; sessions: number }[];
+      };
+      sessions_peak_hours: {
+        Args: { p_location_id: string; p_days?: number };
+        Returns: { hour: number; sessions: number }[];
+      };
     };
     Enums: {
       lane_type: "entry" | "exit";

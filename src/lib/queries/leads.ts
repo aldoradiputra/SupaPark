@@ -1,6 +1,6 @@
 import type { TypedSupabaseClient } from "@/lib/supabase/types";
 import type { Database } from "@/types/database.types";
-import type { CurrentSystemType, LeadStatus } from "@/types";
+import type { CurrentSystemType, Lead, LeadStatus } from "@/types";
 
 type LeadInsert = Database["public"]["Tables"]["leads"]["Insert"];
 
@@ -84,6 +84,56 @@ export interface OnboardingStep2Input {
   dailyVolume?: number;
   preferredDate?: string;
   notes?: string;
+}
+
+export async function updateLeadStatus(
+  supabase: TypedSupabaseClient,
+  id: string,
+  status: LeadStatus,
+) {
+  const { error } = await supabase
+    .from("leads")
+    .update({ status })
+    .eq("id", id);
+  if (error) throw error;
+}
+
+/**
+ * Convert a lead into a project (client-side): create the project, then mark
+ * the lead converted and link it. Admins can write both tables (RLS).
+ */
+export async function convertLead(supabase: TypedSupabaseClient, lead: Lead) {
+  const { data: project, error } = await supabase
+    .from("projects")
+    .insert({
+      lead_id: lead.id,
+      facility_name: lead.facility_name,
+      contact_name: lead.name,
+      contact_email: lead.email,
+      contact_phone: lead.phone,
+      city: lead.city,
+      address: lead.address,
+      latitude: lead.latitude,
+      longitude: lead.longitude,
+      entry_lanes: lead.entry_lanes,
+      exit_lanes: lead.exit_lanes,
+      status: "planning",
+    })
+    .select()
+    .single();
+  if (error) throw error;
+
+  const { error: linkError } = await supabase
+    .from("leads")
+    .update({
+      status: "converted",
+      converted_at: new Date().toISOString(),
+      project_id: project.id,
+    })
+    .eq("id", lead.id);
+  if (linkError) throw linkError;
+
+  return project;
 }
 
 /** Public onboarding step 2 — saves details via the SECURITY DEFINER RPC. */
