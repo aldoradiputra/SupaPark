@@ -4,6 +4,7 @@ package edge
 import (
 	"fmt"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -24,8 +25,13 @@ type Config struct {
 
 	// Lane identity.
 	LaneID          string
+	LocationID      string // informational; the lane API key derives the location server-side
 	LaneType        LaneType
 	FirmwareVersion string
+
+	// Hardware.
+	AlprMock  bool   // EDGE_ALPR_MOCK — use the mock ALPR source
+	RelayType string // EDGE_RELAY_TYPE — gpio | stub
 
 	// Local + behaviour.
 	HTTPAddr          string
@@ -41,8 +47,11 @@ func Load() (Config, error) {
 		SupabaseAnonKey:   os.Getenv("EDGE_SUPABASE_ANON_KEY"),
 		LaneAPIKey:        os.Getenv("EDGE_LANE_API_KEY"),
 		LaneID:            os.Getenv("EDGE_LANE_ID"),
-		LaneType:          LaneType(getenv("EDGE_LANE_TYPE", "entry")),
+		LocationID:        os.Getenv("EDGE_LOCATION_ID"),
+		LaneType:          LaneType(getenv2("EDGE_LANE_MODE", "EDGE_LANE_TYPE", "entry")),
 		FirmwareVersion:   getenv("EDGE_FIRMWARE_VERSION", "0.0.0-dev"),
+		AlprMock:          getbool("EDGE_ALPR_MOCK", true),
+		RelayType:         getenv("EDGE_RELAY_TYPE", "gpio"),
 		HTTPAddr:          getenv("EDGE_HTTP_ADDR", ":8080"),
 		BoltPath:          getenv("EDGE_BOLT_PATH", "supapark-edge.db"),
 		CloudTimeout:      5 * time.Second,
@@ -65,6 +74,25 @@ func getenv(key, def string) string {
 		return v
 	}
 	return def
+}
+
+// getenv2 reads primary, then a fallback key, then a default.
+func getenv2(primary, fallback, def string) string {
+	if v := os.Getenv(primary); v != "" {
+		return v
+	}
+	if v := os.Getenv(fallback); v != "" {
+		return v
+	}
+	return def
+}
+
+func getbool(key string, def bool) bool {
+	v := os.Getenv(key)
+	if v == "" {
+		return def
+	}
+	return v == "1" || strings.EqualFold(v, "true") || strings.EqualFold(v, "yes")
 }
 
 func getdur(key string, def time.Duration) time.Duration {

@@ -45,11 +45,16 @@ func main() {
 
 	cl := cloud.New(cfg.SupabaseURL, cfg.SupabaseAnonKey, cfg.LaneAPIKey, cfg.CloudTimeout)
 	broker := sse.NewBroker()
-	relay := gate.NewRelay(string(cfg.LaneType))
+	relay := gate.NewRelay(cfg.RelayType)
 
+	if !cfg.AlprMock {
+		log.Printf("[edge] EDGE_ALPR_MOCK=false, but the real ALPR pipeline is not wired in this reference; using the mock source")
+	}
 	// The real ALPR pipeline feeds detections via source.Feed(...).
 	source := alpr.NewManualSource()
-	_ = source
+
+	log.Printf("[edge] lane=%s mode=%s location=%s relay=%s firmware=%s",
+		cfg.LaneID, cfg.LaneType, cfg.LocationID, cfg.RelayType, cfg.FirmwareVersion)
 
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer stop()

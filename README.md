@@ -2,7 +2,7 @@
 
 Smart parking system for Indonesia.
 
-- **One Next.js app** on Vercel — landing + onboarding + dashboard (this repo root)
+- **One Next.js app** on Render — landing + onboarding + dashboard (this repo root). See [DEPLOY.md](./DEPLOY.md).
 - **Supabase** backend — Postgres + Auth + Realtime + Edge Functions (`supabase/`)
 - **One lean Go binary per Raspberry Pi lane** — ALPR + gate relay + offline queue
 - **Design system** — brand tokens, components, UI kits (`design-system/`)
