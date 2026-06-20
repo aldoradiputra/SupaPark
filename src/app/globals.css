@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+}
+
+@layer components {
+  /* Plates & money: always mono, amber, tracked (brand rule). */
+  .plate {
+    @apply font-mono font-bold uppercase tracking-plate text-amber;
+  }
+}

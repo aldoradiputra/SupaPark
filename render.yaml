@@ -1,0 +1,26 @@
+# Render Blueprint for the SupaPark Next.js app.
+# Either connect this repo as a Blueprint, or copy these settings into the
+# existing service (srv-...) dashboard. Build artifacts/secrets are not stored
+# here — set the NEXT_PUBLIC_* values in the Render dashboard.
+services:
+  - type: web
+    name: supapark
+    runtime: node
+    region: singapore # closest to Indonesia
+    plan: starter
+    branch: main
+    autoDeploy: true
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: "20.18.0"
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
+      # Public, safe to expose (RLS protects data). Set the real values in the
+      # Render dashboard; sync:false keeps them out of this file/git.
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        sync: false
+      - key: NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+        sync: false

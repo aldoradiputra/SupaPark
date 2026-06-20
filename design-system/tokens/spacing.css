@@ -1,0 +1,39 @@
+/* SupaPark — Spacing, Radius, Shadow Tokens
+   Industrial restraint. Corners never exceed 12px (hard brand rule).
+   No soft consumer-app shadows; elevation comes from surface color
+   steps. The one allowed glow is amber, used sparingly on hero cards. */
+
+:root {
+  /* ---- Spacing scale (4px base) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ---- Radius (12px ceiling — never rounder) ---- */
+  --radius-sm: 6px;             /* small buttons, badges, chips    */
+  --radius: 8px;               /* default — buttons, inputs       */
+  --radius-md: 8px;
+  --radius-lg: 12px;            /* cards, panels (max)             */
+  --radius-pill: 999px;        /* status pills, language toggle   */
+
+  /* ---- Touch targets ---- */
+  --tap-min: 44px;             /* mobile / dashboard minimum      */
+  --tap-tablet: 56px;          /* attendant tablet minimum        */
+  --tap-booth: 80px;           /* booth touchscreen minimum       */
+
+  /* ---- Borders ---- */
+  --border-width: 1px;
+  --border-hairline: 0.5px;
+
+  /* ---- Elevation (color-step, not heavy shadow) ---- */
+  --shadow-card: 0 1px 0 rgba(255,255,255,.02) inset;
+  --glow-amber: 0 0 40px rgba(245,166,35,.08);   /* hero card only */
+  --glow-success: 0 0 32px rgba(0,255,136,.12);  /* booth confirm  */
+}

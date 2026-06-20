@@ -1,0 +1,36 @@
+<!-- @dsCard group="Spacing" viewport="700x170" name="Spacing scale & tap targets" subtitle="4px base · booth ≥80px, tablet ≥56px" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  html,body{margin:0;background:var(--surface-base);font-family:var(--font-ui);color:var(--text-primary);}
+  .wrap{padding:22px 24px;}
+  .lbl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--text-tertiary);margin-bottom:12px;}
+  .scale{display:flex;align-items:flex-end;gap:10px;margin-bottom:18px;}
+  .bar{background:var(--amber);border-radius:2px;}
+  .bw{display:flex;flex-direction:column;align-items:center;gap:6px;}
+  .t{font-family:var(--font-mono);font-size:10px;color:var(--text-secondary);}
+  .taps{display:flex;gap:14px;}
+  .tap{display:flex;flex-direction:column;align-items:center;gap:6px;font-family:var(--font-mono);font-size:10px;color:var(--text-secondary);}
+  .tapbox{background:var(--surface-elevated);border:1px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--text-tertiary);font-size:10px;}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="lbl">Spacing — 4px base</div>
+  <div class="scale">
+    <div class="bw"><div class="bar" style="width:16px;height:4px;"></div><span class="t">4</span></div>
+    <div class="bw"><div class="bar" style="width:16px;height:8px;"></div><span class="t">8</span></div>
+    <div class="bw"><div class="bar" style="width:16px;height:12px;"></div><span class="t">12</span></div>
+    <div class="bw"><div class="bar" style="width:16px;height:16px;"></div><span class="t">16</span></div>
+    <div class="bw"><div class="bar" style="width:16px;height:24px;"></div><span class="t">24</span></div>
+    <div class="bw"><div class="bar" style="width:16px;height:32px;"></div><span class="t">32</span></div>
+    <div class="bw"><div class="bar" style="width:16px;height:48px;"></div><span class="t">48</span></div>
+  </div>
+  <div class="lbl">Minimum tap targets</div>
+  <div class="taps">
+    <div class="tap"><div class="tapbox" style="width:44px;height:44px;">44</div>mobile</div>
+    <div class="tap"><div class="tapbox" style="width:56px;height:56px;">56</div>tablet</div>
+    <div class="tap"><div class="tapbox" style="width:80px;height:80px;border-color:var(--amber);color:var(--amber);">80</div>booth</div>
+  </div>
+</div>
+</body></html>
