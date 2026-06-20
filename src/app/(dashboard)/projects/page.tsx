@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 import { PageHeader } from "@/components/dashboard/page-header";
 import {
@@ -97,7 +98,9 @@ export default function ProjectsPage() {
               {projects.map((p) => (
                 <TR key={p.id}>
                   <TD className="font-medium text-foreground">
-                    {p.facility_name ?? "—"}
+                    <Link href={`/projects/${p.id}`} className="hover:text-amber">
+                      {p.facility_name ?? "—"}
+                    </Link>
                   </TD>
                   <TD className="text-muted">{p.contact_name ?? "—"}</TD>
                   <TD className="text-muted">{p.city ?? "—"}</TD>

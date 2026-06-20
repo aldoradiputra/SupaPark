@@ -1,4 +1,5 @@
 import type { TypedSupabaseClient } from "@/lib/supabase/types";
+import type { Database } from "@/types/database.types";
 
 /**
  * Locations belonging to the signed-in user's organization (for the dashboard
@@ -48,6 +49,21 @@ export async function getLocationById(
     .select("*")
     .eq("id", id)
     .maybeSingle();
+  if (error) throw error;
+  return data;
+}
+
+export async function updateLocation(
+  supabase: TypedSupabaseClient,
+  id: string,
+  patch: Database["public"]["Tables"]["locations"]["Update"],
+) {
+  const { data, error } = await supabase
+    .from("locations")
+    .update(patch)
+    .eq("id", id)
+    .select()
+    .single();
   if (error) throw error;
   return data;
 }

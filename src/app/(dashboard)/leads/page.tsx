@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 import { PageHeader } from "@/components/dashboard/page-header";
 import {
@@ -105,7 +106,9 @@ export default function LeadsPage() {
               {leads.map((lead) => (
                 <TR key={lead.id}>
                   <TD className="font-medium text-foreground">
-                    {lead.facility_name ?? "—"}
+                    <Link href={`/leads/${lead.id}`} className="hover:text-amber">
+                      {lead.facility_name ?? "—"}
+                    </Link>
                     {lead.city ? (
                       <span className="block text-xs text-faint">
                         {lead.city}
