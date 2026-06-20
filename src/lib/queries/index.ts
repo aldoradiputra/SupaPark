@@ -6,3 +6,5 @@ export * from "./locations";
 export * from "./vehicles";
 export * from "./lanes";
 export * from "./revenue";
+export * from "./plate-rules";
+export * from "./org";
